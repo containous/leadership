@@ -18,7 +18,7 @@ func TestFollower(t *testing.T) {
 
 	kvCh := make(chan *store.KVPair)
 	var mockKVCh <-chan *store.KVPair = kvCh
-	mockStore.On("Watch", "test_key", mock.Anything).Return(mockKVCh, nil)
+	mockStore.On("Watch", "test_key", mock.Anything, mock.Anything).Return(mockKVCh, nil)
 
 	follower := NewFollower(kv, "test_key")
 	leaderCh, errCh := follower.FollowElection()
